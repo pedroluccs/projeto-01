@@ -32,5 +32,6 @@ export const SubLogo = styled.h1`
 
   @media (max-width: 1024px) {
     font-size: 16px;
+    margin-top: 10px;
   }
 `
