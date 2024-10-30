@@ -1,10 +1,17 @@
 import { GlobalCss } from './styles'
+import Hero from './components/Hero'
+import CardList from './components/CardList'
+import Footer from './components/Footer'
 
 function App() {
   return (
     <>
-      <GlobalCss />
-      <div>OIEEEE</div>
+      <div>
+        <GlobalCss />
+        <Hero />
+        <CardList />
+        <Footer />
+      </div>
     </>
   )
 }
