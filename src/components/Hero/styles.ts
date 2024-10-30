@@ -10,6 +10,11 @@ export const HeroBar = styled.div`
   flex-direction: column;
   text-align: center;
   position: relative;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: 300px;
+  }
 `
 
 export const Logo = styled.img`
@@ -23,5 +28,9 @@ export const SubLogo = styled.h1`
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
-  margin-top: 170px;
+  margin-top: 140px;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 `

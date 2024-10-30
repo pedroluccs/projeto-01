@@ -6,8 +6,14 @@ export const CardGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   align-items: center;
-  padding: 60px;
-  margin: 40px 270px 0;
+  padding: 80px;
+  margin: 40px 350px 10px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    margin: 0px 0px 0px -20px;
+    padding: 0;
+  }
 `
 
 export const Card = styled.div`
@@ -16,8 +22,13 @@ export const Card = styled.div`
   align-items: center;
   border: 1px solid ${colors.red};
   width: 472px;
-  heigh: 398px;
+  height: 398px;
   margin: 15px;
+
+  @media (max-width: 1024px) {
+    width: 96.2%;
+    height: 398px;
+  }
 `
 
 export const CardImg = styled.div`
