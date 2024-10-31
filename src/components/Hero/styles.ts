@@ -10,6 +10,7 @@ export const HeroBar = styled.div`
   flex-direction: column;
   text-align: center;
   position: relative;
+  margin-bottom: 50px;
 
   @media (max-width: 1024px) {
     width: 100%;

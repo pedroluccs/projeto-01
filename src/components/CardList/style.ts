@@ -6,8 +6,6 @@ export const CardGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   align-items: center;
-  padding: 80px;
-  margin: 40px 350px 10px;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;

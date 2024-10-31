@@ -13,7 +13,6 @@ import {
 } from './style'
 
 import sushi from '../../assets/imagem.png'
-import pizza from '../../assets/image3.png'
 import pasta from '../../assets/image1.png'
 import starIcon from '../../assets/estrela.png'
 
@@ -78,33 +77,35 @@ const cardContent = [
 
 const CardList = () => {
   return (
-    <CardGrid>
-      {cardContent.map((card, index) => (
-        <Card key={index}>
-          <CardImg>
-            <img src={card.image} alt={card.title} />
-            <TagContainer>
-              {card.tags?.map((tag, i) => (
-                <Tag key={i}>{tag}</Tag>
-              ))}
-            </TagContainer>
-          </CardImg>
-          <CardText>
-            <TitleContainer>
-              <CardTitle>{card.title}</CardTitle>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Rating>
-                  {card.rating}
-                  <img src={starIcon} alt="" />
-                </Rating>
-              </div>
-            </TitleContainer>
-            <CardDescription>{card.description}</CardDescription>
-            <CardButton>Saiba mais</CardButton>
-          </CardText>
-        </Card>
-      ))}
-    </CardGrid>
+    <div className="container">
+      <CardGrid>
+        {cardContent.map((card, index) => (
+          <Card key={index}>
+            <CardImg>
+              <img src={card.image} alt={card.title} />
+              <TagContainer>
+                {card.tags?.map((tag, i) => (
+                  <Tag key={i}>{tag}</Tag>
+                ))}
+              </TagContainer>
+            </CardImg>
+            <CardText>
+              <TitleContainer>
+                <CardTitle>{card.title}</CardTitle>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Rating>
+                    {card.rating}
+                    <img src={starIcon} alt="" />
+                  </Rating>
+                </div>
+              </TitleContainer>
+              <CardDescription>{card.description}</CardDescription>
+              <CardButton>Saiba mais</CardButton>
+            </CardText>
+          </Card>
+        ))}
+      </CardGrid>
+    </div>
   )
 }
 
