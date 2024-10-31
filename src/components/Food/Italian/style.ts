@@ -40,8 +40,8 @@ export const CardImg = styled.div`
     object-fit: cover;
 
     @media (max-width: 1024px) {
-      width: 100%;
-      padding-left: 20px;
+      width: 105%;
+      padding-left: 2px;
     }
   }
 `

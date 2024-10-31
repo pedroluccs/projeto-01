@@ -1,6 +1,3 @@
-import logoImage from '../../assets/logo.png'
-import { Link, NavLink } from 'react-router-dom'
-import { Logo } from '../Hero/styles'
 import {
   BackgroundImg,
   Body,
@@ -8,6 +5,7 @@ import {
   RestaurantTag,
   RestaurantName
 } from './styles'
+import logoImage from '../../assets/logo.png'
 import { NavLinkHero } from './styles'
 
 const HeroProfile = () => (
@@ -16,9 +14,9 @@ const HeroProfile = () => (
       <Body>
         <ProfileHeroBar>
           <NavLinkHero to="/">Restaurantes</NavLinkHero>
-          <Link to="/">
-            <Logo src={logoImage} />
-          </Link>
+          <NavLinkHero to="/">
+            <img src={logoImage} alt="" />
+          </NavLinkHero>
           <NavLinkHero to="#">0 produto(s) no carrinho</NavLinkHero>
         </ProfileHeroBar>
         <BackgroundImg>

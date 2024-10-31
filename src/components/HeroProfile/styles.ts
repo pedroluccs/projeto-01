@@ -12,18 +12,20 @@ export const ProfileHeroBar = styled.div`
   position: relative;
   justify-content: space-between;
   height: 200px;
+  padding: 100px;
 
   @media (max-width: 1024px) {
     width: 100%;
     height: 100px;
     display: flex;
+    padding: 0px;
   }
 `
 export const NavLinkHero = styled(Link)`
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
-  margin: 320px;
+  margin: 120px;
 
   @media (max-width: 1024px) {
     margin: 10px;
@@ -37,17 +39,20 @@ export const BackgroundImg = styled.div`
   display: block;
   width: 100%;
   height: 280px;
+  bottom: 20px;
 
   @media (max-width: 1024px) {
     width: 100%;
     height: 150px;
+    bottom: 0px;
   }
 `
 
 export const RestaurantTag = styled.div`
   position: absolute;
   top: 10px;
-  left: 243px;
+  left: 47vh;
+
   color: ${colors.white};
   padding: 5px 10px;
   border-radius: 4px;
@@ -70,7 +75,7 @@ export const Body = styled.body`
 export const RestaurantName = styled.div`
   position: absolute;
   bottom: 10px;
-  left: 258px;
+  left: 48vh;
   color: white;
   font-size: 32px;
   font-weight: 900;
