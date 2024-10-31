@@ -1,18 +1,15 @@
 import { GlobalCss } from './styles'
-import Hero from './components/Hero'
-import CardList from './components/CardList'
-import Footer from './components/Footer'
+import { BrowserRouter } from 'react-router-dom'
+import Rotas from './routes'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <div>
         <GlobalCss />
-        <Hero />
-        <CardList />
-        <Footer />
+        <Rotas />
       </div>
-    </>
+    </BrowserRouter>
   )
 }
 

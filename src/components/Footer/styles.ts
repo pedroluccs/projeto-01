@@ -1,9 +1,11 @@
 import styled from 'styled-components'
+import { colors } from '../../styles'
 
 export const FooterContainer = styled.footer`
-  background-color: #ffebd9;
+  background-color: ${colors.beige};
   text-align: center;
   padding-bottom: 40px;
+  margin-top: 50px;
 `
 export const SocialIcons = styled.div`
   display: flex;

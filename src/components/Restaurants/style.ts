@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const CardGrid = styled.div`
   display: grid;
@@ -20,12 +21,12 @@ export const Card = styled.div`
   align-items: center;
   border: 1px solid ${colors.red};
   width: 472px;
-  height: 398px;
+  height: 408px;
   margin: 15px;
 
   @media (max-width: 1024px) {
     width: 96.2%;
-    height: 398px;
+    height: 406px;
   }
 `
 
@@ -42,8 +43,8 @@ export const CardImg = styled.div`
 export const Tag = styled.div`
   top: 10px;
   right: 10px;
-  background-color: #e66767;
-  color: #fff;
+  background-color: ${colors.red};
+  color: ${colors.white};
   padding: 4px 8px;
   font-size: 0.8rem;
   border-radius: 4px;
@@ -58,7 +59,7 @@ export const TagContainer = styled.div`
 `
 
 export const CardText = styled.div`
-  padding: 16px;
+  padding: 1px;
 `
 
 export const TitleContainer = styled.div`
@@ -70,6 +71,7 @@ export const TitleContainer = styled.div`
 
 export const CardTitle = styled.h3`
   font-size: 18px;
+  padding: 8px;
 `
 
 export const Rating = styled.span`
@@ -85,20 +87,14 @@ export const Rating = styled.span`
 
 export const CardDescription = styled.p`
   font-size: 14px;
-  padding: 1px 0px 0px;
+  padding: 8px 8px 16px;
 `
-export const CardButton = styled.button`
-  width: 88px;
-  height: 24px;
+export const CardButton = styled(Link)`
+  display: inline-block;
+  background-color: #e66767;
+  color: white;
+  padding: 4px 8px;
+  text-decoration: none;
+  margin: 8px;
   font-size: 14px;
-  color: #fff;
-  background-color: ${colors.red};
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 19px 0px -2px;
-
-  &:hover {
-    background-color: #d05555;
-  }
 `

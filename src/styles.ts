@@ -3,7 +3,9 @@ import { createGlobalStyle } from 'styled-components'
 export const colors = {
   white: '#fff',
   black: '#000',
-  red: '#E66767'
+  red: '#E66767',
+  beige: '#FFEBD9',
+  red2: '#d05555'
 }
 
 export const GlobalCss = createGlobalStyle`
@@ -25,4 +27,14 @@ export const GlobalCss = createGlobalStyle`
   width: 100%;
   margin: 0 auto;}
 }
+
+.header {
+  max-width: 1366px;
+  max-height: 280px;
+  width: 100%;
+  margin: 0 auto;
+
+  }
+
+
 `

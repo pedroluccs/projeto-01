@@ -22,6 +22,7 @@ type cardContent = {
   description: string
   tags: string[]
   rating: string
+  link?: string
 }
 
 const cardContent = [
@@ -31,7 +32,8 @@ const cardContent = [
     description:
       'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
     tags: ['Japonesa', 'Destaque da semana'],
-    rating: '4.9'
+    rating: '4.9',
+    link: '/Profile'
   },
   {
     image: pasta,
@@ -39,7 +41,8 @@ const cardContent = [
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     tags: ['Italiana'],
-    rating: '4.9'
+    rating: '4.9',
+    link: '/Profile'
   },
   {
     image: pasta,
@@ -47,7 +50,8 @@ const cardContent = [
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     tags: ['Italiana', 'Destaque da semana'],
-    rating: '4.7'
+    rating: '4.7',
+    link: '/Profile'
   },
   {
     image: pasta,
@@ -55,7 +59,8 @@ const cardContent = [
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     tags: ['Italiana', 'Promoção'],
-    rating: '4.6'
+    rating: '4.6',
+    link: '/Profile'
   },
   {
     image: pasta,
@@ -63,7 +68,8 @@ const cardContent = [
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     tags: ['Italiana'],
-    rating: '4.0'
+    rating: '4.0',
+    link: '/Profile'
   },
   {
     image: pasta,
@@ -71,7 +77,8 @@ const cardContent = [
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     tags: ['Italiana'],
-    rating: '4.1'
+    rating: '4.1',
+    link: '/Profile'
   }
 ]
 
@@ -100,7 +107,7 @@ const CardList = () => {
                 </div>
               </TitleContainer>
               <CardDescription>{card.description}</CardDescription>
-              <CardButton>Saiba mais</CardButton>
+              <CardButton to={card.link}>Saiba mais</CardButton>
             </CardText>
           </Card>
         ))}
