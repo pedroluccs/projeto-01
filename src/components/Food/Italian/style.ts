@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { colors } from '../../../styles'
-import { Link } from 'react-router-dom'
 
 export const CardGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  align-items: center;
+  place-items: center;
+  gap: 40px;
+  margin: 220px 100px 100px 0px;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -23,7 +23,7 @@ export const Card = styled.div`
   border: 8px solid ${colors.red};
   background-color: ${colors.red};
   width: 320px;
-  height: 350px;
+  height: 390px;
 
   @media (max-width: 1024px) {
     width: 100%;
@@ -33,11 +33,13 @@ export const Card = styled.div`
 
 export const CardImg = styled.div`
   position: relative;
+  object-fit: cover;
+  overflow: hidden;
 
   img {
-    width: 100%;
+    width: 304px;
     height: 100%;
-    object-fit: cover;
+    object-fit: fit;
 
     @media (max-width: 1024px) {
       width: 105%;
@@ -84,17 +86,16 @@ export const CardDescription = styled.p`
     margin-left: 25px;
   }
 `
-export const CardButton = styled(Link)`
+export const CardButton = styled.button`
+  font-size: 14px;
+  font-weight: bold;
   display: inline-block;
   background-color: ${colors.beige};
   color: ${colors.red};
   padding: 4px 8px;
-  text-decoration: none;
-  margin: 1px;
   text-align: center;
   width: 100%;
-  font-weight: bold;
-  font-size: 14px;
+  border-color: ${colors.red};
 
   @media (max-width: 1024px) {
     width: 200px;

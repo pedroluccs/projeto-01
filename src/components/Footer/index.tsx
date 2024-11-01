@@ -8,17 +8,19 @@ import { Logo } from '../Hero/styles'
 const Footer = () => {
   return (
     <FooterContainer>
-      <Logo src={logoImage} />
-      <SocialIcons>
-        <img src={instagram} alt="" />
-        <img src={facebook} alt="" />
-        <img src={twitter} alt="" />
-      </SocialIcons>
-      <Copyright>
-        A efood é uma plataforma para divulgação de estabelecimentos, a
-        responsabilidade pela entrega, qualidade dos produtos é toda do
-        estabelecimento contratado.
-      </Copyright>
+      <div className="container">
+        <Logo src={logoImage} />
+        <SocialIcons>
+          <img src={instagram} alt="" />
+          <img src={facebook} alt="" />
+          <img src={twitter} alt="" />
+        </SocialIcons>
+        <Copyright>
+          A efood é uma plataforma para divulgação de estabelecimentos, a
+          responsabilidade pela entrega, qualidade dos produtos é toda do
+          estabelecimento contratado.
+        </Copyright>
+      </div>
     </FooterContainer>
   )
 }

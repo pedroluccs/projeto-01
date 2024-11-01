@@ -7,38 +7,26 @@ import { colors } from '../../styles'
 export const ProfileHeroBar = styled.div`
   background-image: url(${backgroundImage});
   display: flex;
-  align-items: center;
-  text-align: center;
-  position: relative;
   justify-content: space-between;
-  height: 200px;
-  padding: 100px;
+  position: relative;
+  height: 186px;
+  max-width: 1366px;
+  place-items: center;
 
   @media (max-width: 1024px) {
     width: 100%;
     height: 100px;
     display: flex;
-    padding: 0px;
   }
 `
-export const NavLinkHero = styled(Link)`
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 120px;
 
-  @media (max-width: 1024px) {
-    margin: 10px;
-  }
-`
 export const BackgroundImg = styled.div`
   background-image: url(${backgroundImage2});
-  background-position: center;
-  background-size: cover;
   position: relative;
   display: block;
   width: 100%;
   height: 280px;
+  max-width: 1366px;
   bottom: 20px;
 
   @media (max-width: 1024px) {
@@ -48,10 +36,28 @@ export const BackgroundImg = styled.div`
   }
 `
 
+export const NavLinkHero = styled(Link)`
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+
+  img {
+    margin-left: 70px;
+  }
+
+  p {
+    margin: 150px;
+  }
+
+  @media (max-width: 1024px) {
+    margin: 10px;
+  }
+`
+
 export const RestaurantTag = styled.div`
   position: absolute;
   top: 10px;
-  left: 47vh;
+  left: 18vh;
 
   color: ${colors.white};
   padding: 5px 10px;
@@ -64,18 +70,10 @@ export const RestaurantTag = styled.div`
     left: 10px;
   }
 `
-
-export const Body = styled.body`
-  margin: 0px 0px 110px;
-
-  @media (max-width: 1024px) {
-    margin: 0 auto;
-  }
-`
 export const RestaurantName = styled.div`
   position: absolute;
   bottom: 10px;
-  left: 48vh;
+  left: 19vh;
   color: white;
   font-size: 32px;
   font-weight: 900;
