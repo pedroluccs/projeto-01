@@ -13,60 +13,115 @@ import {
 
 import pizza from '../../../assets/modal-picture.png'
 import AlertModal from '../../Modal'
+import CartModal from '../../CartModal'
+import AddressModal from '../../AddressModal'
 
-const FoodCardContent = [
+type FoodCardItem = {
+  image: string
+  title: string
+  description: string
+  price: number
+}
+
+const FoodCardContent: FoodCardItem[] = [
   {
     image: pizza,
     title: 'Pizza Marguerita',
     description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 60.0
   },
   {
     image: pizza,
     title: 'Pizza Marguerita',
     description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 60.0
   },
   {
     image: pizza,
     title: 'Pizza Marguerita',
     description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 60.0
   },
   {
     image: pizza,
     title: 'Pizza Marguerita',
     description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 60.0
   },
   {
     image: pizza,
     title: 'Pizza Marguerita',
     description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 60.0
   },
   {
     image: pizza,
     title: 'Pizza Marguerita',
     description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 60.0
   }
 ]
 
 const FoodCardList = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [selectedCard, setSelectedCard] = useState<
-    null | (typeof FoodCardContent)[0]
-  >(null)
+  const [showAlertModal, setShowAlertModal] = useState(false)
+  const [showCartModal, setShowCartModal] = useState(false)
+  const [showAddressModal, setShowAddressModal] = useState(false)
+  const [selectedCard, setSelectedCard] = useState<FoodCardItem | null>(null)
+  const [cartItems, setCartItems] = useState<FoodCardItem[]>([])
 
-  const handleOpenModal = (card: (typeof FoodCardContent)[0]) => {
+  const handleAlertModal = (card: FoodCardItem) => {
     setSelectedCard(card)
-    setShowModal(true)
+    setShowAlertModal(true)
   }
 
-  const handleCloseModal = () => {
-    setShowModal(false)
+  const handleCloseAlertModal = () => {
+    setShowAlertModal(false)
     setSelectedCard(null)
+  }
+
+  const handleOpenCartModal = () => {
+    setShowAlertModal(false)
+    setShowCartModal(true)
+  }
+
+  const handleCloseCartModal = () => {
+    setShowCartModal(false)
+  }
+
+  const handleAddToCart = () => {
+    if (selectedCard) {
+      setCartItems((prevItems) => [...prevItems, selectedCard])
+      handleOpenCartModal() // Fecha o AlertModal após adicionar ao carrinho
+    }
+  }
+
+  const handleRemoveFromCart = (title: string) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.title !== title)
+    )
+  }
+
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)
+  }
+  const handleContinueToDelivery = () => {
+    setShowCartModal(false)
+    setShowAddressModal(true)
+  }
+
+  const handleBackToCart = () => {
+    setShowAddressModal(false)
+    setShowCartModal(true)
+  }
+
+  const handleContinueToPayment = () => {
+    setShowAddressModal(false)
   }
 
   return (
@@ -82,20 +137,37 @@ const FoodCardList = () => {
                 <CardTitle>{card.title}</CardTitle>
               </TitleContainer>
               <CardDescription>{card.description}</CardDescription>
-              <CardButton onClick={() => handleOpenModal(card)}>
+              <CardButton onClick={() => handleAlertModal(card)}>
                 Adicionar ao carrinho
               </CardButton>
             </CardText>
           </Card>
         ))}
       </CardGrid>
-      {showModal && selectedCard && (
+      {showAlertModal && selectedCard && (
         <AlertModal
           image={selectedCard.image}
           title={selectedCard.title}
           description={selectedCard.description}
-          price="R$ 60,00"
-          onClose={handleCloseModal}
+          price={`R$ ${selectedCard.price.toFixed(2)}`}
+          onClose={handleCloseAlertModal}
+          onAddToCart={handleAddToCart}
+        />
+      )}
+      {showCartModal && (
+        <CartModal
+          items={cartItems}
+          total={calculateTotal()}
+          onRemove={handleRemoveFromCart}
+          onClose={handleCloseCartModal}
+          onContinueToDelivery={handleContinueToDelivery}
+        />
+      )}
+      {showAddressModal && (
+        <AddressModal
+          onClose={() => setShowAddressModal(false)}
+          onBackToCart={handleBackToCart}
+          onContinueToPayment={handleContinueToPayment}
         />
       )}
     </div>

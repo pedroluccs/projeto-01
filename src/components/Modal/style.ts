@@ -20,7 +20,6 @@ export const ModalContent = styled.div`
   border-radius: 8px;
   max-width: 1024px;
   height: 344px;
-  width: 100%;
   gap: 18px;
   position: relative;
   display: flex;
@@ -50,7 +49,7 @@ export const ModalDescription = styled.p`
 `
 
 export const ModalButton = styled.button`
-  background-color: ${colors.white};
+  background-color: ${colors.beige};
   color: ${colors.red};
   padding: 5px 5px;
   border: none;

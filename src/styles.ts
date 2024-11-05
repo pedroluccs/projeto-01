@@ -44,6 +44,8 @@ export const GlobalCss = createGlobalStyle`
   display: block;
   text-align: left;'
 
+
+
   }
 
 

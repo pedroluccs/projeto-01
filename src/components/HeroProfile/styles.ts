@@ -42,7 +42,7 @@ export const NavLinkHero = styled(Link)`
   font-weight: bold;
 
   img {
-    margin-left: 70px;
+    margin-left: 15vh;
   }
 
   p {
