@@ -33,21 +33,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
     }
   }, [])
 
-  const [orderNumber, setOrderNumber] = useState<number | null>(null)
-
-  const handleFinalizePayment = () => {
-    // Gerar um número de pedido (pode ser alterado conforme necessário)
-    const generatedOrderNumber = Math.floor(Math.random() * 100000) // Exemplo de número aleatório
-    setOrderNumber(generatedOrderNumber)
-    openOrderConfirmationModal(generatedOrderNumber)
-  }
-
-  const openOrderConfirmationModal = (number: number) => {
-    // Aqui você deve implementar a lógica para abrir o modal de confirmação do pedido
-    // Você pode usar um estado para controlar a visibilidade do modal
-    console.log(`Pedido ${number} realizado com sucesso!`)
-  }
-
   return (
     <ModalPaymentOverlay>
       <ModalContent>
@@ -55,7 +40,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
         <form>
           <FormGroup>
             <Label>Nome no cartão</Label>
-            <Input type="number" required />
+            <Input type="text" required />
           </FormGroup>
           <FirstSideInput>
             <FormGroup style={{ width: '65%' }}>

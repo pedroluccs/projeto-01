@@ -44,6 +44,7 @@ export const CardImg = styled.div`
     @media (max-width: 1024px) {
       width: 105%;
       padding-left: 2px;
+      object-fit: contain;
     }
   }
 `
