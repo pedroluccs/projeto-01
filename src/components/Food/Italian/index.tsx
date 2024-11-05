@@ -17,6 +17,8 @@ import PaymentModal from '../../PaymentModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../../CartReducer'
 import { RootState } from '../../../store'
+import DoneOrderModal from '../../DoneOrderModal'
+import { clearCart } from '../../CartReducer'
 
 export type FoodCardItem = {
   image: string
@@ -77,6 +79,7 @@ const FoodCardList = () => {
   const [showCartModal, setShowCartModal] = useState(false)
   const [showAddressModal, setShowAddressModal] = useState(false)
   const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [showDoneOrderModal, setShowDoneOrderModal] = useState(false)
   const [selectedCard, setSelectedCard] = useState<FoodCardItem | null>(null)
   const [cartItems, setCartItems] = useState<FoodCardItem[]>([])
   const cartItens = useSelector((state: RootState) => state.cart.items) // ajuste o caminho conforme sua estrutura
@@ -108,12 +111,6 @@ const FoodCardList = () => {
     }
   }
 
-  const handleRemoveFromCart = (title: string) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item.title !== title)
-    )
-  }
-
   const calculateTotal = () => {
     return cartItens.reduce((total, item) => total + item.price, 0).toFixed(2)
   }
@@ -139,6 +136,12 @@ const FoodCardList = () => {
 
   const handleFinishPayment = () => {
     setShowPaymentModal(false)
+    setShowDoneOrderModal(true)
+  }
+
+  const handleDoneOrder = () => {
+    setShowDoneOrderModal(false)
+    dispatch(clearCart())
   }
 
   return (
@@ -189,6 +192,13 @@ const FoodCardList = () => {
           total={calculateTotal()}
           onClose={() => setShowPaymentModal(false)}
           onBackToAddress={handleBackToAddress}
+          onFinishPayment={handleFinishPayment}
+        />
+      )}
+      {showDoneOrderModal && (
+        <DoneOrderModal
+          onClose={() => setShowPaymentModal(false)}
+          onDoneOrder={handleDoneOrder}
         />
       )}
     </div>

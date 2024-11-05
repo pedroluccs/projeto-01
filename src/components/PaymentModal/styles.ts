@@ -28,6 +28,10 @@ export const ModalContent = styled.div`
     font-size: 16px;
     margin-bottom: 16px;
   }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `
 
 export const FormGroup = styled.div`
@@ -63,6 +67,10 @@ export const Input = styled.input`
   box-sizing: border-box;
   background-color: ${colors.beige};
   color: ${colors.black};
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 
   &:focus {
     border-color: ${colors.black};

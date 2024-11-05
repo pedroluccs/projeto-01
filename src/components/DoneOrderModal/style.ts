@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { colors } from '../../styles'
 
-export const ModalAddressOverlay = styled.div`
+export const DoneOrderModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -18,9 +18,8 @@ export const ModalContent = styled.div`
   top: 0;
   right: 0;
   width: 20%;
-  height: 100%;
+  height: 100vh;
   background-color: ${colors.red};
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.8);
   padding: 20px;
   overflow-y: auto;
 
@@ -28,6 +27,9 @@ export const ModalContent = styled.div`
     color: ${colors.beige};
     font-size: 16px;
     margin-bottom: 16px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-start;
   }
 
   @media (max-width: 1024px) {
@@ -35,37 +37,12 @@ export const ModalContent = styled.div`
   }
 `
 
-export const FormGroup = styled.div`
-  margin-bottom: 15px;
-`
-export const NumberForm = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 50px;
-  align-items: center;
-`
-
-export const Label = styled.label`
-  font-size: 14px;
+export const OrderComplete = styled.p`
   color: ${colors.beige};
-  margin-bottom: 8px;
-  display: block;
+  padding-bottom: 24px;
+  font-weight: 400;
   font-size: 14px;
-`
-
-export const Input = styled.input`
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  outline: none;
-  box-sizing: border-box;
-  background-color: ${colors.beige};
-  color: ${colors.black};
-
-  &:focus {
-    border-color: ${colors.black};
-  }
+  line-height: 22px;
 `
 
 export const Button = styled.button`
@@ -74,10 +51,10 @@ export const Button = styled.button`
   background-color: ${colors.beige};
   color: ${colors.red};
   border: none;
-  font-size: 16px;
   cursor: pointer;
   margin-top: 10px;
   font-size: 14px;
+  font-weight: 700;
 
   &:hover {
     background-color: #ffebd0;
@@ -85,14 +62,5 @@ export const Button = styled.button`
 
   &:first-child {
     margin-top: 20px;
-  }
-`
-
-export const BackButton = styled(Button)`
-  background-color: ${colors.beige};
-  margin-top: 8px;
-
-  &:hover {
-    background-color: #ffebd0;
   }
 `

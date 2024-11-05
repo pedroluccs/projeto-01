@@ -16,20 +16,25 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<FoodCardItem>) {
-      state.items.push(action.payload) // Adiciona o item ao carrinho
-      state.totalQuantity++ // Incrementa a quantidade total
+      state.items.push(action.payload)
+      state.totalQuantity++
     },
     removeItem(state, action: PayloadAction<{ title: string }>) {
       const index = state.items.findIndex(
         (item) => item.title === action.payload.title
       )
       if (index !== -1) {
-        state.items.splice(index, 1) // Remove o item do carrinho
-        state.totalQuantity-- // Decrementa a quantidade total
+        state.items.splice(index, 1)
+        state.totalQuantity--
       }
+    },
+    clearCart(state) {
+      // Resetar os itens e a quantidade total para os valores iniciais
+      state.items = []
+      state.totalQuantity = 0
     }
   }
 })
 
-export const { addItem, removeItem } = cartSlice.actions
+export const { addItem, removeItem, clearCart } = cartSlice.actions
 export default cartSlice.reducer

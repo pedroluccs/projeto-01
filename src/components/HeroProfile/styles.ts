@@ -15,8 +15,8 @@ export const ProfileHeroBar = styled.div`
 
   @media (max-width: 1024px) {
     width: 100%;
-    height: 100px;
-    display: flex;
+    height: 160px;
+    display: block;
   }
 `
 
@@ -32,7 +32,6 @@ export const BackgroundImg = styled.div`
   @media (max-width: 1024px) {
     width: 100%;
     height: 150px;
-    bottom: 0px;
   }
 `
 
@@ -42,7 +41,7 @@ export const NavLinkHero = styled(Link)`
   font-weight: bold;
 
   img {
-    margin-left: 15vh;
+    margin-left: 11.5vh;
   }
 
   p {
@@ -50,7 +49,17 @@ export const NavLinkHero = styled(Link)`
   }
 
   @media (max-width: 1024px) {
-    margin: 10px;
+    align-items: center;
+    text-align: center;
+    display: grid;
+
+    p {
+      margin: 10px;
+    }
+
+    img {
+      margin: 1px;
+    }
   }
 `
 
