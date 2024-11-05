@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { CloseButton, ModalButton } from '../Modal/style'
+import { CloseButton } from '../Modal/style'
 import {
   CartModalOverlay,
   CartItem,
@@ -7,7 +7,8 @@ import {
   RemoveButton,
   TotalPrice,
   CartItemList,
-  CartText
+  CartText,
+  CartModalButton
 } from './styles'
 import trash from '../../assets/lixeira-de-reciclagem 1.png'
 import { useSelector, useDispatch } from 'react-redux'
@@ -62,9 +63,9 @@ const CartModal: React.FC<{
           <span>Valor Total</span>
           <span> R$ {total}</span>
         </TotalPrice>
-        <ModalButton onClick={onContinueToDelivery}>
+        <CartModalButton onClick={onContinueToDelivery}>
           Continuar com a entrega
-        </ModalButton>
+        </CartModalButton>
       </CartModalContent>
     </CartModalOverlay>
   )

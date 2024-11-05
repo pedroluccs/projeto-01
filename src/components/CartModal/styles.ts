@@ -53,6 +53,19 @@ export const CartText = styled.div`
     margin: 10px;
   }
 `
+export const CartModalButton = styled.button`
+  background-color: ${colors.beige};
+  color: ${colors.red};
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+
+  @media (max-width: 1024px) {
+    margin-left: 0px;
+  }
+`
 
 export const RemoveButton = styled.button`
   background: transparent;
