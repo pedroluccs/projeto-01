@@ -16,7 +16,6 @@ export const ProfileHeroBar = styled.div`
   @media (max-width: 1024px) {
     width: 100%;
     height: 160px;
-    display: block;
   }
 `
 
@@ -58,7 +57,7 @@ export const NavLinkHero = styled(Link)`
     }
 
     img {
-      margin: 1px;
+      margin: 0px;
     }
   }
 `
