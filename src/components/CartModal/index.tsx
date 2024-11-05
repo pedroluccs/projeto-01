@@ -10,28 +10,33 @@ import {
   CartText
 } from './styles'
 import trash from '../../assets/lixeira-de-reciclagem 1.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { removeItem } from '../CartReducer'
+import { RootState } from '../../store'
 
-type CartModalProps = {
-  items: { title: string; price: number; image: string }[]
-  total: string
-  onRemove: (title: string) => void
+const CartModal: React.FC<{
   onClose: () => void
   onContinueToDelivery: () => void
-}
+}> = ({ onClose, onContinueToDelivery }) => {
+  const dispatch = useDispatch()
 
-const CartModal: React.FC<CartModalProps> = ({
-  items,
-  total,
-  onRemove,
-  onClose,
-  onContinueToDelivery
-}) => {
+  const items = useSelector((state: RootState) => state.cart.items)
+  const total = items.reduce((acc, item) => acc + item.price, 0).toFixed(2)
+
+  const handleContinueToDelivery = () => {
+    onContinueToDelivery
+  }
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = ''
     }
   }, [])
+
+  const handleRemove = (title: string) => {
+    dispatch(removeItem({ title }))
+  }
 
   return (
     <CartModalOverlay>
@@ -46,7 +51,7 @@ const CartModal: React.FC<CartModalProps> = ({
                   <h3>{item.title}</h3>
                   <p>R$ {item.price.toFixed(2)}</p>
                 </div>
-                <RemoveButton onClick={() => onRemove(item.title)}>
+                <RemoveButton onClick={() => handleRemove(item.title)}>
                   <img src={trash} alt="lixo" />
                 </RemoveButton>
               </CartItem>

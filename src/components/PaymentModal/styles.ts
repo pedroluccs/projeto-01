@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { colors } from '../../styles'
 
-export const ModalAddressOverlay = styled.div`
+export const ModalPaymentOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -18,9 +18,8 @@ export const ModalContent = styled.div`
   top: 0;
   right: 0;
   width: 20%;
-  height: 100%;
+  height: 100vh;
   background-color: ${colors.red};
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.8);
   padding: 20px;
   overflow-y: auto;
 
@@ -34,11 +33,17 @@ export const ModalContent = styled.div`
 export const FormGroup = styled.div`
   margin-bottom: 15px;
 `
-export const NumberForm = styled.div`
+export const SideInput = styled.div`
   width: 100%;
   display: flex;
-  gap: 50px;
+  gap: 30px;
   align-items: center;
+`
+
+export const FirstSideInput = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const Label = styled.label`

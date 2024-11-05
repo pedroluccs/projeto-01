@@ -9,7 +9,7 @@ export const CartModalOverlay = styled(ModalOverlay)`
 export const CartModalContent = styled.div`
   background: ${colors.red};
   height: 100vh;
-  width: 15%;
+  width: 20%;
   padding: 10px;
   display: flex;
   flex-direction: column;

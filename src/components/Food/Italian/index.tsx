@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import {
   CardGrid,
   CardDescription,
@@ -10,13 +9,16 @@ import {
   CardButton,
   TitleContainer
 } from './style'
-
 import pizza from '../../../assets/modal-picture.png'
 import AlertModal from '../../Modal'
 import CartModal from '../../CartModal'
 import AddressModal from '../../AddressModal'
+import PaymentModal from '../../PaymentModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from '../../CartReducer'
+import { RootState } from '../../../store'
 
-type FoodCardItem = {
+export type FoodCardItem = {
   image: string
   title: string
   description: string
@@ -69,11 +71,15 @@ const FoodCardContent: FoodCardItem[] = [
 ]
 
 const FoodCardList = () => {
+  const dispatch = useDispatch()
+
   const [showAlertModal, setShowAlertModal] = useState(false)
   const [showCartModal, setShowCartModal] = useState(false)
   const [showAddressModal, setShowAddressModal] = useState(false)
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
   const [selectedCard, setSelectedCard] = useState<FoodCardItem | null>(null)
   const [cartItems, setCartItems] = useState<FoodCardItem[]>([])
+  const cartItens = useSelector((state: RootState) => state.cart.items) // ajuste o caminho conforme sua estrutura
 
   const handleAlertModal = (card: FoodCardItem) => {
     setSelectedCard(card)
@@ -96,8 +102,9 @@ const FoodCardList = () => {
 
   const handleAddToCart = () => {
     if (selectedCard) {
+      dispatch(addItem(selectedCard))
       setCartItems((prevItems) => [...prevItems, selectedCard])
-      handleOpenCartModal() // Fecha o AlertModal após adicionar ao carrinho
+      handleOpenCartModal()
     }
   }
 
@@ -108,7 +115,7 @@ const FoodCardList = () => {
   }
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)
+    return cartItens.reduce((total, item) => total + item.price, 0).toFixed(2)
   }
   const handleContinueToDelivery = () => {
     setShowCartModal(false)
@@ -122,6 +129,16 @@ const FoodCardList = () => {
 
   const handleContinueToPayment = () => {
     setShowAddressModal(false)
+    setShowPaymentModal(true)
+  }
+
+  const handleBackToAddress = () => {
+    setShowPaymentModal(false)
+    setShowAddressModal(true)
+  }
+
+  const handleFinishPayment = () => {
+    setShowPaymentModal(false)
   }
 
   return (
@@ -156,9 +173,6 @@ const FoodCardList = () => {
       )}
       {showCartModal && (
         <CartModal
-          items={cartItems}
-          total={calculateTotal()}
-          onRemove={handleRemoveFromCart}
           onClose={handleCloseCartModal}
           onContinueToDelivery={handleContinueToDelivery}
         />
@@ -168,6 +182,13 @@ const FoodCardList = () => {
           onClose={() => setShowAddressModal(false)}
           onBackToCart={handleBackToCart}
           onContinueToPayment={handleContinueToPayment}
+        />
+      )}
+      {showPaymentModal && (
+        <PaymentModal
+          total={calculateTotal()}
+          onClose={() => setShowPaymentModal(false)}
+          onBackToAddress={handleBackToAddress}
         />
       )}
     </div>
