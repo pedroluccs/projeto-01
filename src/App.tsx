@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Rotas from './routes'
 import { Provider } from 'react-redux'
 import { store } from './store'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Rotas />
         </div>
       </BrowserRouter>
+      <Footer />
     </Provider>
   )
 }

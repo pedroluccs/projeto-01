@@ -1,13 +1,14 @@
 import FoodCardList from '../../components/Food/Italian'
-import Footer from '../../components/Footer'
 import HeroProfile from '../../components/HeroProfile'
+import { useParams } from 'react-router-dom'
 
 const Profile = () => {
+  const { id } = useParams()
+
   return (
     <>
       <HeroProfile />
       <FoodCardList />
-      <Footer />
     </>
   )
 }

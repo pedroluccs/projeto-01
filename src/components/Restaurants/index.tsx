@@ -12,102 +12,58 @@ import {
   Rating
 } from './style'
 
-import sushi from '../../assets/imagem.png'
-import pasta from '../../assets/image1.png'
 import starIcon from '../../assets/estrela.png'
 
-type cardContent = {
-  image: string
-  title: string
-  description: string
-  tags: string[]
-  rating: string
-  link?: string
+type CardContent = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: [
+    {
+      foto: string
+      preco: number
+      id: number
+      nome: string
+      descricao: string
+      porcao: string
+    }
+  ]
 }
 
-const cardContent = [
-  {
-    image: sushi,
-    title: 'Hioki Sushi',
-    description:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    tags: ['Japonesa', 'Destaque da semana'],
-    rating: '4.9',
-    link: '/Profile'
-  },
-  {
-    image: pasta,
-    title: 'La Dolce Vita Trattoria',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tags: ['Italiana'],
-    rating: '4.9',
-    link: '/Profile'
-  },
-  {
-    image: pasta,
-    title: 'La Dolce Vita Trattoria',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tags: ['Italiana', 'Destaque da semana'],
-    rating: '4.7',
-    link: '/Profile'
-  },
-  {
-    image: pasta,
-    title: 'La Dolce Vita Trattoria',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tags: ['Italiana', 'Promoção'],
-    rating: '4.6',
-    link: '/Profile'
-  },
-  {
-    image: pasta,
-    title: 'La Dolce Vita Trattoria',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tags: ['Italiana'],
-    rating: '4.0',
-    link: '/Profile'
-  },
-  {
-    image: pasta,
-    title: 'La Dolce Vita Trattoria',
-    description:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tags: ['Italiana'],
-    rating: '4.1',
-    link: '/Profile'
-  }
-]
+type CardListProps = {
+  restaurants: CardContent[]
+}
 
-const CardList = () => {
+const CardList = ({ restaurants }: CardListProps) => {
   return (
     <div className="container">
       <CardGrid>
-        {cardContent.map((card, index) => (
+        {restaurants.map((restaurant, index) => (
           <Card key={index}>
             <CardImg>
-              <img src={card.image} alt={card.title} />
+              <img src={restaurant.capa} alt={restaurant.titulo} />
               <TagContainer>
-                {card.tags?.map((tag, i) => (
-                  <Tag key={i}>{tag}</Tag>
-                ))}
+                <Tag>{restaurant.tipo}</Tag>
               </TagContainer>
             </CardImg>
             <CardText>
               <TitleContainer>
-                <CardTitle>{card.title}</CardTitle>
+                <CardTitle>{restaurant.titulo}</CardTitle>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <Rating>
-                    {card.rating}
+                    {restaurant.avaliacao}
                     <img src={starIcon} alt="" />
                   </Rating>
                 </div>
               </TitleContainer>
-              <CardDescription>{card.description}</CardDescription>
-              <CardButton to={card.link}>Saiba mais</CardButton>
+              <CardDescription>{restaurant.descricao}</CardDescription>
+              <CardButton to={`/profile/${restaurant.id}`}>
+                Saiba mais
+              </CardButton>
             </CardText>
           </Card>
         ))}

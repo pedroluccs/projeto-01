@@ -10,10 +10,11 @@ export const ProfileHeroBar = styled.div`
   justify-content: space-between;
   position: relative;
   height: 186px;
-  max-width: 1366px;
   place-items: center;
+  width: 100%;
 
   @media (max-width: 1024px) {
+    display: grid;
     width: 100%;
     height: 160px;
   }
@@ -25,12 +26,16 @@ export const BackgroundImg = styled.div`
   display: block;
   width: 100%;
   height: 280px;
-  max-width: 1366px;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
   bottom: 20px;
+  color: ${colors.white};
 
   @media (max-width: 1024px) {
     width: 100%;
     height: 150px;
+    bottom: 10px;
   }
 `
 
@@ -40,54 +45,64 @@ export const NavLinkHero = styled(Link)`
   font-weight: bold;
 
   img {
-    margin-left: 11.5vh;
-  }
-
-  p {
-    margin: 150px;
+    left: 100vh;
+    bottom: 8vh;
+    position: absolute;
   }
 
   @media (max-width: 1024px) {
     align-items: center;
     text-align: center;
-    display: grid;
-
-    p {
-      margin: 10px;
-    }
 
     img {
-      margin: 0px;
+      left: 18vh;
     }
   }
 `
-
 export const RestaurantTag = styled.div`
   position: absolute;
   top: 10px;
-  left: 18vh;
-
-  color: ${colors.white};
-  padding: 5px 10px;
-  border-radius: 4px;
   font-size: 32px;
   font-weight: 100;
 
+  p {
+    color: ${colors.white};
+  }
+
   @media (max-width: 1024px) {
     font-size: 15px;
-    left: 10px;
+    left: 9vh;
   }
 `
 export const RestaurantName = styled.div`
   position: absolute;
   bottom: 10px;
-  left: 19vh;
-  color: white;
   font-size: 32px;
   font-weight: 900;
 
+  p {
+    color: ${colors.white};
+  }
+
   @media (max-width: 1024px) {
     font-size: 15px;
-    left: 10px;
+    left: 3vh;
+  }
+`
+export const TextAlign = styled.p`
+  position: relative;
+  left: 440px;
+
+  @media (max-width: 1024px) {
+    left: 14vh;
+  }
+`
+export const CartText = styled.p`
+  position: relative;
+  right: 440px;
+
+  @media (max-width: 1024px) {
+    display: flex;
+    left: 16vh;
   }
 `

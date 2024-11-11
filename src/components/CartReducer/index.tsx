@@ -29,7 +29,6 @@ const cartSlice = createSlice({
       }
     },
     clearCart(state) {
-      // Resetar os itens e a quantidade total para os valores iniciais
       state.items = []
       state.totalQuantity = 0
     }

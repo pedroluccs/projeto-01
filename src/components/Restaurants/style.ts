@@ -21,7 +21,7 @@ export const Card = styled.div`
   align-items: center;
   border: 1px solid ${colors.red};
   width: 472px;
-  height: 408px;
+  height: 460px;
   margin: 15px;
 
   @media (max-width: 1024px) {
@@ -34,8 +34,9 @@ export const CardImg = styled.div`
   position: relative;
 
   img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    width: 500px;
+    height: 250px;
     object-fit: cover;
   }
 `

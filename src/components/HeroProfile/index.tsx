@@ -2,7 +2,9 @@ import {
   BackgroundImg,
   ProfileHeroBar,
   RestaurantTag,
-  RestaurantName
+  RestaurantName,
+  TextAlign,
+  CartText
 } from './styles'
 import logoImage from '../../assets/logo.png'
 import { NavLinkHero } from './styles'
@@ -18,18 +20,24 @@ const HeroProfile = () => {
     <div className="header">
       <ProfileHeroBar>
         <NavLinkHero to="/">
-          <p>Restaurantes</p>
+          <TextAlign>Restaurantes</TextAlign>
         </NavLinkHero>
         <NavLinkHero to="/">
-          <img src={logoImage} alt="" />
+          <img src={logoImage} alt="Logo" />
         </NavLinkHero>
-        <NavLinkHero to="#">
-          <p>{totalQuantity} produto(s) no carrinho</p>
-        </NavLinkHero>
+        <CartText>
+          <NavLinkHero to="#">
+            {totalQuantity} produto(s) no carrinho
+          </NavLinkHero>
+        </CartText>
       </ProfileHeroBar>
       <BackgroundImg>
-        <RestaurantTag>Italiana</RestaurantTag>
-        <RestaurantName>La Dolce Vita Trattoria</RestaurantName>
+        <RestaurantTag>
+          <TextAlign>Italiana</TextAlign>
+        </RestaurantTag>
+        <RestaurantName>
+          <TextAlign>La Dolce Vita Trattoria</TextAlign>
+        </RestaurantName>
       </BackgroundImg>
     </div>
   )

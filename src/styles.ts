@@ -31,22 +31,15 @@ export const GlobalCss = createGlobalStyle`
 
 
 .header {
-  max-width: 1366px;
+  max-width: 100%;
   max-height: 280px;
   width: 100%;
-  margin: 0 auto;
-  justify-content: center
   }
 
   .modal {
   max-width: 1024px;
   width: 100%;
   display: block;
-  text-align: left;'
-
-
-
+  text-align: left;
   }
-
-
 `
