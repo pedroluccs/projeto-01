@@ -146,34 +146,36 @@ const FoodCardList = () => {
 
   return (
     <div className="container">
-      <CardGrid>
-        {FoodCardContent.map((card, index) => (
-          <Card key={index}>
-            <CardImg>
-              <img src={card.image} alt={card.title} />
-            </CardImg>
-            <CardText>
-              <TitleContainer>
-                <CardTitle>{card.title}</CardTitle>
-              </TitleContainer>
-              <CardDescription>{card.description}</CardDescription>
-              <CardButton onClick={() => handleAlertModal(card)}>
-                Adicionar ao carrinho
-              </CardButton>
-            </CardText>
-          </Card>
-        ))}
-      </CardGrid>
-      {showAlertModal && selectedCard && (
-        <AlertModal
-          image={selectedCard.image}
-          title={selectedCard.title}
-          description={selectedCard.description}
-          price={`R$ ${selectedCard.price.toFixed(2)}`}
-          onClose={handleCloseAlertModal}
-          onAddToCart={handleAddToCart}
-        />
-      )}
+      <div className="container">
+        <CardGrid>
+          {FoodCardContent.map((card, index) => (
+            <Card key={index}>
+              <CardImg>
+                <img src={card.image} alt={card.title} />
+              </CardImg>
+              <CardText>
+                <TitleContainer>
+                  <CardTitle>{card.title}</CardTitle>
+                </TitleContainer>
+                <CardDescription>{card.description}</CardDescription>
+                <CardButton onClick={() => handleAlertModal(card)}>
+                  Adicionar ao carrinho
+                </CardButton>
+              </CardText>
+            </Card>
+          ))}
+        </CardGrid>
+        {showAlertModal && selectedCard && (
+          <AlertModal
+            image={selectedCard.image}
+            title={selectedCard.title}
+            description={selectedCard.description}
+            price={`R$ ${selectedCard.price.toFixed(2)}`}
+            onClose={handleCloseAlertModal}
+            onAddToCart={handleAddToCart}
+          />
+        )}
+      </div>
       {showCartModal && (
         <CartModal
           onClose={handleCloseCartModal}

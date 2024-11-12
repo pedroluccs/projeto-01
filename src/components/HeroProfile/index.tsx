@@ -1,15 +1,15 @@
 import {
   BackgroundImg,
-  ProfileHeroBar,
+  HeroProfileBar,
   RestaurantTag,
   RestaurantName,
-  TextAlign,
-  CartText
+  NavLinkHeroRight,
+  NavLinkHeroLeft
 } from './styles'
-import logoImage from '../../assets/logo.png'
-import { NavLinkHero } from './styles'
+
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
+import Hero from '../Hero'
 
 const HeroProfile = () => {
   const totalQuantity = useSelector(
@@ -18,26 +18,26 @@ const HeroProfile = () => {
 
   return (
     <div className="header">
-      <ProfileHeroBar>
-        <NavLinkHero to="/">
-          <TextAlign>Restaurantes</TextAlign>
-        </NavLinkHero>
-        <NavLinkHero to="/">
-          <img src={logoImage} alt="Logo" />
-        </NavLinkHero>
-        <CartText>
-          <NavLinkHero to="#">
+      <HeroProfileBar>
+        <Hero />
+        <div className="container">
+          <NavLinkHeroLeft to="/">
+            <p>Restaurantes</p>
+          </NavLinkHeroLeft>
+          <NavLinkHeroRight to="#">
             {totalQuantity} produto(s) no carrinho
-          </NavLinkHero>
-        </CartText>
-      </ProfileHeroBar>
+          </NavLinkHeroRight>
+        </div>
+      </HeroProfileBar>
       <BackgroundImg>
-        <RestaurantTag>
-          <TextAlign>Italiana</TextAlign>
-        </RestaurantTag>
-        <RestaurantName>
-          <TextAlign>La Dolce Vita Trattoria</TextAlign>
-        </RestaurantName>
+        <div className="container">
+          <RestaurantTag>
+            <p>Italiana</p>
+          </RestaurantTag>
+          <RestaurantName>
+            <p>La Dolce Vita Trattoria</p>
+          </RestaurantName>
+        </div>
       </BackgroundImg>
     </div>
   )

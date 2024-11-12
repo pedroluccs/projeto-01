@@ -26,14 +26,12 @@ export const GlobalCss = createGlobalStyle`
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;
-
   }
 
 
 .header {
   max-width: 100%;
   max-height: 280px;
-  width: 100%;
   }
 
   .modal {

@@ -11,7 +11,7 @@ export const CardGrid = styled.div`
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     margin: 0px 0px 0px -20px;
-    padding-top: 40px;
+    padding-top: 80px;
     background-color: ${colors.beige};
   }
 `
