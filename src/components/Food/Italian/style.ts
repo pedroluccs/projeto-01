@@ -24,6 +24,7 @@ export const Card = styled.div`
   background-color: ${colors.red};
   width: 320px;
   height: 390px;
+  border-radius: 4px;
 
   @media (max-width: 1024px) {
     width: 100%;
@@ -97,6 +98,7 @@ export const CardButton = styled.button`
   text-align: center;
   width: 100%;
   border-color: ${colors.red};
+  border-radius: 4px;
 
   @media (max-width: 1024px) {
     width: 200px;
