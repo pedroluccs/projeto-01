@@ -11,7 +11,7 @@ interface CardContent {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: any[] // Tipo que você está usando para os itens do cardápio
+  cardapio: any[]
 }
 
 const Profile = () => {
