@@ -14,7 +14,7 @@ import {
 
 import starIcon from '../../assets/estrela.png'
 
-type CardContent = {
+export type CardContent = {
   id: number
   titulo: string
   destacado: boolean
@@ -22,16 +22,6 @@ type CardContent = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: [
-    {
-      foto: string
-      preco: number
-      id: number
-      nome: string
-      descricao: string
-      porcao: string
-    }
-  ]
 }
 
 type CardListProps = {

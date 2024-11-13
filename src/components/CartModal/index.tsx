@@ -22,7 +22,7 @@ const CartModal: React.FC<{
   const dispatch = useDispatch()
 
   const items = useSelector((state: RootState) => state.cart.items)
-  const total = items.reduce((acc, item) => acc + item.price, 0).toFixed(2)
+  const total = items.reduce((acc, item) => acc + item.preco, 0).toFixed(2)
 
   const handleContinueToDelivery = () => {
     onContinueToDelivery
@@ -35,8 +35,8 @@ const CartModal: React.FC<{
     }
   }, [])
 
-  const handleRemove = (title: string) => {
-    dispatch(removeItem({ title }))
+  const handleRemove = (nome: string) => {
+    dispatch(removeItem({ nome }))
   }
 
   return (
@@ -47,12 +47,12 @@ const CartModal: React.FC<{
           <CartItemList>
             {items.map((item, index) => (
               <CartItem key={index}>
-                <img src={item.image} alt={item.title} />
+                <img src={item.foto} alt={item.nome} />
                 <div className="container">
-                  <h3>{item.title}</h3>
-                  <p>R$ {item.price.toFixed(2)}</p>
+                  <h3>{item.nome}</h3>
+                  <p>R$ {item.preco.toFixed(2)}</p>
                 </div>
-                <RemoveButton onClick={() => handleRemove(item.title)}>
+                <RemoveButton onClick={() => handleRemove(item.nome)}>
                   <img src={trash} alt="lixo" />
                 </RemoveButton>
               </CartItem>

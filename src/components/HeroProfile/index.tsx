@@ -11,11 +11,16 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import Hero from '../Hero'
 
-const HeroProfile = () => {
+interface HeroProfileProps {
+  tipo: string
+  titulo: string
+}
+
+const HeroProfile: React.FC<HeroProfileProps> = ({ tipo, titulo }) => {
   const totalQuantity = useSelector(
     (state: RootState) => state.cart.totalQuantity
   )
-
+  const tipoFormatted = tipo.charAt(0).toUpperCase() + tipo.slice(1)
   return (
     <div className="header">
       <HeroProfileBar>
@@ -32,10 +37,10 @@ const HeroProfile = () => {
       <BackgroundImg>
         <div className="container">
           <RestaurantTag>
-            <p>Italiana</p>
+            <p>{tipoFormatted}</p>
           </RestaurantTag>
           <RestaurantName>
-            <p>La Dolce Vita Trattoria</p>
+            <p>{titulo}</p>
           </RestaurantName>
         </div>
       </BackgroundImg>

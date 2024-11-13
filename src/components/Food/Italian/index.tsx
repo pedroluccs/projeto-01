@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CardGrid,
   CardDescription,
@@ -21,77 +21,39 @@ import DoneOrderModal from '../../DoneOrderModal'
 import { clearCart } from '../../CartReducer'
 
 export type FoodCardItem = {
-  image: string
-  title: string
-  description: string
-  price: number
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
 }
 
-const FoodCardContent: FoodCardItem[] = [
-  {
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    price: 60.0
-  },
-  {
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    price: 60.0
-  },
-  {
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    price: 60.0
-  },
-  {
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    price: 60.0
-  },
-  {
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    price: 60.0
-  },
-  {
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    price: 60.0
-  }
-]
+interface FoodCardListProps {
+  menuData: FoodCardItem[]
+}
 
-const FoodCardList = () => {
+const FoodCardList: React.FC<FoodCardListProps> = ({ menuData }) => {
   const dispatch = useDispatch()
+  const cartItens = useSelector((state: RootState) => state.cart.items)
 
   const [showAlertModal, setShowAlertModal] = useState(false)
   const [showCartModal, setShowCartModal] = useState(false)
   const [showAddressModal, setShowAddressModal] = useState(false)
   const [showPaymentModal, setShowPaymentModal] = useState(false)
   const [showDoneOrderModal, setShowDoneOrderModal] = useState(false)
-  const [selectedCard, setSelectedCard] = useState<FoodCardItem | null>(null)
-  const [cartItems, setCartItems] = useState<FoodCardItem[]>([])
-  const cartItens = useSelector((state: RootState) => state.cart.items) // ajuste o caminho conforme sua estrutura
+  const [selectedItem, setSelectedItem] = React.useState<FoodCardItem | null>(
+    null
+  )
 
-  const handleAlertModal = (card: FoodCardItem) => {
-    setSelectedCard(card)
+  const handleAlertModal = (item: FoodCardItem) => {
+    setSelectedItem(item)
     setShowAlertModal(true)
   }
 
   const handleCloseAlertModal = () => {
     setShowAlertModal(false)
-    setSelectedCard(null)
+    setSelectedItem(null)
   }
 
   const handleOpenCartModal = () => {
@@ -104,16 +66,17 @@ const FoodCardList = () => {
   }
 
   const handleAddToCart = () => {
-    if (selectedCard) {
-      dispatch(addItem(selectedCard))
-      setCartItems((prevItems) => [...prevItems, selectedCard])
-      handleOpenCartModal()
+    if (selectedItem) {
+      dispatch(addItem(selectedItem))
+      setShowCartModal(true)
+      handleCloseAlertModal()
     }
   }
 
   const calculateTotal = () => {
-    return cartItens.reduce((total, item) => total + item.price, 0).toFixed(2)
+    return cartItens.reduce((total, item) => total + item.preco, 0).toFixed(2)
   }
+
   const handleContinueToDelivery = () => {
     setShowCartModal(false)
     setShowAddressModal(true)
@@ -148,29 +111,30 @@ const FoodCardList = () => {
     <div className="container">
       <div className="container">
         <CardGrid>
-          {FoodCardContent.map((card, index) => (
-            <Card key={index}>
+          {menuData.map((item) => (
+            <Card key={item.id}>
               <CardImg>
-                <img src={card.image} alt={card.title} />
+                <img src={item.foto} alt={item.nome} />
               </CardImg>
               <CardText>
                 <TitleContainer>
-                  <CardTitle>{card.title}</CardTitle>
+                  <CardTitle>{item.nome}</CardTitle>
                 </TitleContainer>
-                <CardDescription>{card.description}</CardDescription>
-                <CardButton onClick={() => handleAlertModal(card)}>
+                <CardDescription>{item.descricao}</CardDescription>
+                <CardButton onClick={() => handleAlertModal(item)}>
                   Adicionar ao carrinho
                 </CardButton>
               </CardText>
             </Card>
           ))}
         </CardGrid>
-        {showAlertModal && selectedCard && (
+        {showAlertModal && selectedItem && (
           <AlertModal
-            image={selectedCard.image}
-            title={selectedCard.title}
-            description={selectedCard.description}
-            price={`R$ ${selectedCard.price.toFixed(2)}`}
+            image={selectedItem.foto}
+            title={selectedItem.nome}
+            description={selectedItem.descricao}
+            price={`R$ ${selectedItem.preco.toFixed(2)}`}
+            portion={selectedItem.porcao}
             onClose={handleCloseAlertModal}
             onAddToCart={handleAddToCart}
           />
