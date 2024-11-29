@@ -55,6 +55,7 @@ export const NavLinkHeroRight = styled.span`
   right: 0;
   bottom: 350px;
   z-index: 1;
+  cursor: pointer;
 
   @media (max-width: 1024px) {
     position: relative;
