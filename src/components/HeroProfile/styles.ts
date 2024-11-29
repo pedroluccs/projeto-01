@@ -47,7 +47,7 @@ export const BackgroundImg = styled.div`
   }
 `
 
-export const NavLinkHeroRight = styled(Link)`
+export const NavLinkHeroRight = styled.span`
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;

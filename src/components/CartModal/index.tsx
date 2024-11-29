@@ -24,10 +24,6 @@ const CartModal: React.FC<{
   const items = useSelector((state: RootState) => state.cart.items)
   const total = items.reduce((acc, item) => acc + item.preco, 0).toFixed(2)
 
-  const handleContinueToDelivery = () => {
-    onContinueToDelivery
-  }
-
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -63,7 +59,10 @@ const CartModal: React.FC<{
           <span>Valor Total</span>
           <span> R$ {total}</span>
         </TotalPrice>
-        <CartModalButton onClick={onContinueToDelivery}>
+        <CartModalButton
+          onClick={onContinueToDelivery}
+          disabled={items.length === 0}
+        >
           Continuar com a entrega
         </CartModalButton>
       </CartModalContent>

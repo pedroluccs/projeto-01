@@ -13,8 +13,8 @@ function App() {
           <GlobalCss />
           <Rotas />
         </div>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </Provider>
   )
 }

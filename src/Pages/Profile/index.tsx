@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import FoodCardList from '../../components/Food/Italian'
 import HeroProfile from '../../components/HeroProfile'
 import { useParams } from 'react-router-dom'
+import CartModal from '../../components/CartModal'
 
 interface CardContent {
   id: number
@@ -17,6 +18,10 @@ interface CardContent {
 const Profile = () => {
   const { id } = useParams()
   const [menuData, setMenuData] = useState<CardContent | null>(null)
+  const [showCartModal, setShowCartModal] = useState(false)
+
+  const handleOpenCartModal = () => setShowCartModal(true)
+  const handleCloseCartModal = () => setShowCartModal(false)
 
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
@@ -27,12 +32,22 @@ const Profile = () => {
       )
   }, [id])
   return (
-    <>
+    <div>
       {menuData && (
-        <HeroProfile tipo={menuData.tipo} titulo={menuData.titulo} />
+        <HeroProfile
+          tipo={menuData.tipo}
+          titulo={menuData.titulo}
+          onOpenCart={handleOpenCartModal}
+        />
       )}
       <FoodCardList menuData={menuData?.cardapio || []} />
-    </>
+      {showCartModal && (
+        <CartModal
+          onClose={handleCloseCartModal}
+          onContinueToDelivery={() => console.log('Continue to delivery')}
+        />
+      )}
+    </div>
   )
 }
 

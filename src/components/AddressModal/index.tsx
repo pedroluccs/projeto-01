@@ -13,12 +13,20 @@ import {
 
 type AddressModalProps = {
   onClose: () => void
-  onContinueToPayment: () => void
+  onContinueToPayment: (addressData: {
+    receiver: string
+    address: {
+      description: string
+      city: string
+      zipCode: string
+      number: number
+      complement: string
+    }
+  }) => void
   onBackToCart: () => void
 }
 
 const AddressModal: React.FC<AddressModalProps> = ({
-  onClose,
   onContinueToPayment,
   onBackToCart
 }) => {
@@ -26,7 +34,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
     receiver: '',
     address: '',
     city: '',
-    cep: '',
+    zipCode: '',
     number: '',
     complement: ''
   })
@@ -54,7 +62,7 @@ const AddressModal: React.FC<AddressModalProps> = ({
       !formData.receiver ||
       !formData.address ||
       !formData.city ||
-      !formData.cep ||
+      !formData.zipCode ||
       !formData.number
     ) {
       setFormError('Por favor, preencha todos os campos obrigatórios.')
@@ -62,7 +70,19 @@ const AddressModal: React.FC<AddressModalProps> = ({
     }
 
     setFormError('')
-    onContinueToPayment()
+
+    const addressData = {
+      receiver: formData.receiver,
+      address: {
+        description: formData.address,
+        city: formData.city,
+        zipCode: formData.zipCode,
+        number: parseInt(formData.number, 10),
+        complement: formData.complement
+      }
+    }
+
+    onContinueToPayment(addressData)
   }
 
   return (
@@ -105,8 +125,8 @@ const AddressModal: React.FC<AddressModalProps> = ({
               <Label>CEP</Label>
               <Input
                 type="text"
-                name="cep"
-                value={formData.cep}
+                name="zipCode"
+                value={formData.zipCode}
                 onChange={handleChange}
                 required
               />

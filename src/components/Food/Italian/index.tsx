@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   CardGrid,
   CardDescription,
@@ -9,7 +9,7 @@ import {
   CardButton,
   TitleContainer
 } from './style'
-import pizza from '../../../assets/modal-picture.png'
+
 import AlertModal from '../../Modal'
 import CartModal from '../../CartModal'
 import AddressModal from '../../AddressModal'
@@ -46,6 +46,29 @@ const FoodCardList: React.FC<FoodCardListProps> = ({ menuData }) => {
     null
   )
 
+  const [addressInfo, setAddressInfo] = useState({
+    receiver: '',
+    address: {
+      description: '',
+      city: '',
+      zipCode: '',
+      number: 0,
+      complement: ''
+    }
+  })
+
+  const [paymentInfo, setPaymentInfo] = useState({
+    card: {
+      name: '',
+      number: '',
+      code: 0,
+      expires: {
+        month: 0,
+        year: 0
+      }
+    }
+  })
+
   const handleAlertModal = (item: FoodCardItem) => {
     setSelectedItem(item)
     setShowAlertModal(true)
@@ -54,15 +77,6 @@ const FoodCardList: React.FC<FoodCardListProps> = ({ menuData }) => {
   const handleCloseAlertModal = () => {
     setShowAlertModal(false)
     setSelectedItem(null)
-  }
-
-  const handleOpenCartModal = () => {
-    setShowAlertModal(false)
-    setShowCartModal(true)
-  }
-
-  const handleCloseCartModal = () => {
-    setShowCartModal(false)
   }
 
   const handleAddToCart = () => {
@@ -87,17 +101,18 @@ const FoodCardList: React.FC<FoodCardListProps> = ({ menuData }) => {
     setShowCartModal(true)
   }
 
-  const handleContinueToPayment = () => {
+  const handleContinueToPayment = (addressData: typeof addressInfo) => {
+    setAddressInfo(addressData)
     setShowAddressModal(false)
     setShowPaymentModal(true)
   }
-
   const handleBackToAddress = () => {
     setShowPaymentModal(false)
     setShowAddressModal(true)
   }
 
-  const handleFinishPayment = () => {
+  const handleFinishPayment = (paymentData: typeof paymentInfo) => {
+    setPaymentInfo(paymentData)
     setShowPaymentModal(false)
     setShowDoneOrderModal(true)
   }
@@ -109,40 +124,39 @@ const FoodCardList: React.FC<FoodCardListProps> = ({ menuData }) => {
 
   return (
     <div className="container">
-      <div className="container">
-        <CardGrid>
-          {menuData.map((item) => (
-            <Card key={item.id}>
-              <CardImg>
-                <img src={item.foto} alt={item.nome} />
-              </CardImg>
-              <CardText>
-                <TitleContainer>
-                  <CardTitle>{item.nome}</CardTitle>
-                </TitleContainer>
-                <CardDescription>{item.descricao}</CardDescription>
-                <CardButton onClick={() => handleAlertModal(item)}>
-                  Adicionar ao carrinho
-                </CardButton>
-              </CardText>
-            </Card>
-          ))}
-        </CardGrid>
-        {showAlertModal && selectedItem && (
-          <AlertModal
-            image={selectedItem.foto}
-            title={selectedItem.nome}
-            description={selectedItem.descricao}
-            price={`R$ ${selectedItem.preco.toFixed(2)}`}
-            portion={selectedItem.porcao}
-            onClose={handleCloseAlertModal}
-            onAddToCart={handleAddToCart}
-          />
-        )}
-      </div>
+      <CardGrid>
+        {menuData.map((item) => (
+          <Card key={item.id}>
+            <CardImg>
+              <img src={item.foto} alt={item.nome} />
+            </CardImg>
+            <CardText>
+              <TitleContainer>
+                <CardTitle>{item.nome}</CardTitle>
+              </TitleContainer>
+              <CardDescription>{item.descricao}</CardDescription>
+              <CardButton onClick={() => handleAlertModal(item)}>
+                Adicionar ao carrinho
+              </CardButton>
+            </CardText>
+          </Card>
+        ))}
+      </CardGrid>
+
+      {showAlertModal && selectedItem && (
+        <AlertModal
+          image={selectedItem.foto}
+          title={selectedItem.nome}
+          description={selectedItem.descricao}
+          price={`R$ ${selectedItem.preco.toFixed(2)}`}
+          portion={selectedItem.porcao}
+          onClose={handleCloseAlertModal}
+          onAddToCart={handleAddToCart}
+        />
+      )}
       {showCartModal && (
         <CartModal
-          onClose={handleCloseCartModal}
+          onClose={() => setShowCartModal(false)}
           onContinueToDelivery={handleContinueToDelivery}
         />
       )}
@@ -163,7 +177,7 @@ const FoodCardList: React.FC<FoodCardListProps> = ({ menuData }) => {
       )}
       {showDoneOrderModal && (
         <DoneOrderModal
-          onClose={() => setShowPaymentModal(false)}
+          onClose={() => setShowDoneOrderModal(false)}
           onDoneOrder={handleDoneOrder}
         />
       )}

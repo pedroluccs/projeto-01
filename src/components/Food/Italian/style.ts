@@ -34,13 +34,12 @@ export const Card = styled.div`
 
 export const CardImg = styled.div`
   position: relative;
-  object-fit: cover;
   overflow: hidden;
 
   img {
-    width: 304px;
+    width: 300px;
     height: 100%;
-    object-fit: fit;
+    object-fit: cover;
 
     @media (max-width: 1024px) {
       width: 105%;

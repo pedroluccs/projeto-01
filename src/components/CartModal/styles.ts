@@ -62,6 +62,15 @@ export const CartModalButton = styled.button`
   font-weight: 700;
   font-size: 14px;
 
+  &:hover {
+    background-color: ${colors.white};
+  }
+
+  &:disabled {
+    background-color: ${colors.gray};
+    cursor: not-allowed;
+  }
+
   @media (max-width: 1024px) {
     margin-left: 0px;
   }

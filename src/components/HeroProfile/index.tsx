@@ -14,9 +14,14 @@ import Hero from '../Hero'
 interface HeroProfileProps {
   tipo: string
   titulo: string
+  onOpenCart: () => void
 }
 
-const HeroProfile: React.FC<HeroProfileProps> = ({ tipo, titulo }) => {
+const HeroProfile: React.FC<HeroProfileProps> = ({
+  tipo,
+  titulo,
+  onOpenCart
+}) => {
   const totalQuantity = useSelector(
     (state: RootState) => state.cart.totalQuantity
   )
@@ -29,7 +34,7 @@ const HeroProfile: React.FC<HeroProfileProps> = ({ tipo, titulo }) => {
           <NavLinkHeroLeft to="/">
             <p>Restaurantes</p>
           </NavLinkHeroLeft>
-          <NavLinkHeroRight to="#">
+          <NavLinkHeroRight onClick={onOpenCart}>
             {totalQuantity} produto(s) no carrinho
           </NavLinkHeroRight>
         </div>

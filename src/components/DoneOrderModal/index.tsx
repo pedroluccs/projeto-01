@@ -12,10 +12,7 @@ type DoneOrderModalProps = {
   onDoneOrder: () => void
 }
 
-const DoneOrderModal: React.FC<DoneOrderModalProps> = ({
-  onDoneOrder,
-  onClose
-}) => {
+const DoneOrderModal: React.FC<DoneOrderModalProps> = ({ onDoneOrder }) => {
   const [orderId, setOrderId] = useState<string>('')
 
   useEffect(() => {

@@ -5,7 +5,8 @@ export const colors = {
   black: '#000',
   red: '#E66767',
   beige: '#FFEBD9',
-  red2: '#d05555'
+  red2: '#d05555',
+  gray: '#ccc'
 }
 
 export const GlobalCss = createGlobalStyle`
